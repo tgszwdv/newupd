@@ -3,17 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scraping e Atualização</title>
+  <title>Atualizar</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      border-width: 0.5em;
+    }
+    .btn-remove {
+      cursor: pointer;
+      color: red;
+    }
+  </style>
 </head>
 <body>
-  <h1>Dados de Scraping</h1>
-  <button id="scrapeButton">Iniciar Scraping</button>
-  <button id="updateButton" disabled>Atualizar Tabela da Página</button>
-  <button id="showUpdatedDataButton">Mostrar Dados Atualizados</button>
+  <div class="overlay" id="loadingOverlay">
+    <div class="spinner-border text-light" role="status">
+      <span class="sr-only">Carregando...</span>
+    </div>
+  </div>
   
-  <h2>Dados do Scraping</h2>
-  <table id="dataTable">
+  <h1>Atualizar tabela</h1>
+  <button id="scrapeButton" class="btn btn-primary">Baixar dados</button>
+  <button id="updateButton" class="btn btn-secondary" disabled>Atualizar Tabela da Página</button>
+  <button id="showUpdatedDataButton" class="btn btn-info">Mostrar tabela da página</button>
+  
+  <h2>Dados Baixados</h2>
+  <table id="dataTable" class="table">
     <thead>
       <tr>
         <th>Título</th>
@@ -21,6 +52,7 @@
         <th>Período</th>
         <th>URL</th>
         <th>Edital</th>
+        <th>Ação</th> <!-- Nova coluna para o botão de remover -->
       </tr>
     </thead>
     <tbody>
@@ -29,14 +61,15 @@
   </table>
   
   <h2>Dados Atualizados</h2>
-  <table id="updatedDataTable">
+  <table id="updatedDataTable" class="table">
     <thead>
       <tr>
         <th>Título</th>
         <th>Descrição</th>
         <th>Período</th>
         <th>URL</th>
-        <th>Edital</th> 
+        <th>Edital</th>
+      
       </tr>
     </thead>
     <tbody>
@@ -44,6 +77,10 @@
     </tbody>
   </table>
   
+  <!-- Bootstrap JS e dependências -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
